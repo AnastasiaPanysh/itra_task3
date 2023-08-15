@@ -1,6 +1,5 @@
 const crypto = require("crypto");
 const readline = require("readline");
-
 class Referee {
   constructor(numChoices) {
     this.numChoices = numChoices;
@@ -19,7 +18,6 @@ class Referee {
     }
   }
 }
-
 class TableRules {
   constructor(throws) {
     this.throws = throws;
@@ -32,30 +30,27 @@ class TableRules {
     let table = this.formatRow(headerRow);
 
     for (let i = 0; i < this.throws.length; i++) {
-        const row = [this.throws[i]];
+      const row = [this.throws[i]];
 
-        for (let j = 0; j < this.throws.length; j++) {
-            row.push(referee.getResult(j, i));
-        }
+      for (let j = 0; j < this.throws.length; j++) {
+        row.push(referee.getResult(j, i));
+      }
 
-        table += this.formatRow(row);
+      table += this.formatRow(row);
     }
-
     console.log(table);
-}
+  }
 
-formatRow(row) {
-    const cellWidth = 10; 
+  formatRow(row) {
+    const cellWidth = 10;
     let formattedRow = "";
 
     for (const cell of row) {
-        formattedRow += cell.toString().padEnd(cellWidth);
+      formattedRow += cell.toString().padEnd(cellWidth);
     }
-
     return formattedRow + "\n";
+  }
 }
-}
-
 class EncryptionKey {
   generateKey() {
     const bytes = crypto.randomBytes(16);
@@ -68,7 +63,6 @@ class EncryptionKey {
     return hmac.digest("hex");
   }
 }
-
 class Play {
   constructor() {
     this.rl = readline.createInterface({
@@ -92,8 +86,8 @@ class Play {
   validateThrowChoices(throwChoices) {
     if (
       throwChoices.length < 3 ||
-     ( throwChoices.length % 2 == 0 ||
-        new Set(throwChoices).size !== throwChoices.length)
+      throwChoices.length % 2 == 0 ||
+      new Set(throwChoices).size !== throwChoices.length
     ) {
       console.log(
         "Incorrect result. You must provide 3 or more unique throw choices."
