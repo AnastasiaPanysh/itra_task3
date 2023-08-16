@@ -24,7 +24,7 @@ class TableRules {
   }
 
   onDisplay() {
-    const headerRow = ["(throws)", ...this.throws];
+    const headerRow = ["vPC\\User>", ...this.throws];
     const referee = new Referee(this.throws.length);
 
     let table = this.formatRow(headerRow);
@@ -90,7 +90,7 @@ class Play {
       new Set(throwChoices).size !== throwChoices.length
     ) {
       console.log(
-        "Incorrect result. You must provide 3 or more unique throw choices."
+        "Incorrect result"
       );
       return false;
     }
